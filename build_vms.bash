@@ -10,8 +10,12 @@ do
 	terraform init -var "virtname=$i"
 	terraform plan -var "virtname=$i"
 	terraform apply -var "virtname=$i"
+
 	seq -s'#' 0 $(tput cols) | tr -d '[:digit:]'
-	sleep 5
+	sleep 30
+	VIRSH_ID=$(sudo virsh list --all  | /bin/grep $i | awk ' { print $1 } ')
+	sudo virsh domifaddr $VIRSH_ID
+	seq -s'#' 0 $(tput cols) | tr -d '[:digit:]'
 done
 
 
