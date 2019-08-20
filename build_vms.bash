@@ -9,13 +9,16 @@ do
 	rm -rf .terraform terraform.tfstate*
 	terraform init -var "virtname=$i"
 	terraform plan -var "virtname=$i"
-	terraform apply -var "virtname=$i"
+	terraform apply -var "virtname=$i" -auto-approve
 
+	echo -e "\\033[1;41m "
 	seq -s'#' 0 $(tput cols) | tr -d '[:digit:]'
-	sleep 30
 	VIRSH_ID=$(sudo virsh list --all  | /bin/grep $i | awk ' { print $1 } ')
-	sudo virsh domifaddr $VIRSH_ID
+	echo "Build for ------ $i ------- " | tee -a build.log
+	sudo virsh domifaddr $VIRSH_ID | tee -a build.log
+	sleep 30
 	seq -s'#' 0 $(tput cols) | tr -d '[:digit:]'
+	echo -e " \\033[0;39m"
 done
 
 
