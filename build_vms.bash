@@ -1,8 +1,13 @@
 #!/bin/bash
 
 if [ "$#" -eq 0 ]; then
-	echo "$0 requires one arg, the name of the vm to create."
-	echo " $0 aws3"
+	echo
+	echo "This program requires at least one arg, the name of the vm to create."
+	echo
+	echo "$0 aws3"
+	echo "or"
+	echo "$0 aws1 aws2 aws3 aws4 aws5 aws6"
+	echo
 	exit 1
 fi
 
