@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$#" -eq 0 ]; then
+	echo "$0 requires one arg, the name of the vm to create."
+	echo " $0 aws3"
+	exit 1
+fi
+
 spinner()
 {
     local pid=$1
