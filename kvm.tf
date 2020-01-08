@@ -10,7 +10,7 @@ provider "libvirt" {
 resource "libvirt_volume" "aws-qcow2" {
   name = "${var.virtname}-aws.qcow2"
   pool = "default"
-  source = "file:///var/lib/libvirt/images/amazon/amzn2-kvm-2.0.20190612-x86_64.xfs.gpt.qcow2"
+  source = "file:///var/lib/libvirt/images/amazon/amzn2-kvm-2.0.20190823.1-x86_64.xfs.gpt.qcow2"
   format = "qcow2"
 }
 
